@@ -1,7 +1,7 @@
 # webvision
 
 Team Members: -
-Abhinav Sharma (Leader)
-Ayush Sinha 
-Yogesh Gupta
-Yash Kumar
+1. Abhinav Sharma (Leader)/n
+2. Ayush Sinha 
+3. Yogesh Gupta
+4. Yash Kumar
