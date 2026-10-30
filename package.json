@@ -1,0 +1,31 @@
+{
+  "name": "sarathi-redesign",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Unofficial concept redesign of the Sarathi Parivahan driving-licence portal (demo only).",
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c yellow,cyan \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "node --watch server/index.js",
+    "dev:web": "vite",
+    "build": "tsc -b && vite build",
+    "start": "node server/index.js",
+    "test": "node --test server/test/*.test.js",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "reset": "node server/scripts/reset.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.2.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.3"
+  }
+}
