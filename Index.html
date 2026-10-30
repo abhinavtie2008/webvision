@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sarathi Parivahan - Driving Licence Services</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #073b70;
+        --blue: #087fc1;
+        --sky: #19a7e0;
+        --ink: #16324b;
+        --muted: #617487;
+        --gold: #f4b544;
+        --paper: #f3f7fb;
+        --line: #dce7f0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+      }
+      a {
+        color: inherit;
+      }
+      .utility {
+        background: #062d54;
+        color: #eaf6ff;
+        font-size: 12px;
+        padding: 7px 0;
+      }
+      .utility .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .utility a {
+        text-decoration: none;
+        color: #fff;
+        margin-left: 16px;
+      }
+      .masthead {
+        background: linear-gradient(112deg, #087fc1, #19a7e0);
+        color: #fff;
+        padding: 17px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .masthead:after {
+        content: "";
+        position: absolute;
+        width: 380px;
+        height: 380px;
+        border: 1px solid #ffffff25;
+        border-radius: 50%;
+        right: -100px;
+        top: -250px;
+        box-shadow:
+          0 0 0 35px #ffffff0c,
+          0 0 0 75px #ffffff09;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        position: relative;
+        z-index: 1;
+      }
+      .emblem {
+        width: 52px;
+        height: 58px;
+        border-radius: 13px;
+        background: #fff;
+        color: var(--navy);
+        display: grid;
+        place-items: center;
+        font-size: 27px;
+        box-shadow: 0 5px 14px #00365b35;
+      }
+      .brand-copy h1 {
+        font-size: clamp(19px, 2vw, 27px);
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        margin: 0;
+      }
+      .brand-copy p {
+        font-size: 12px;
+        line-height: 1.35;
+        margin: 3px 0 0;
+        color: #e5f6ff;
+      }
+      .portal-mark {
+        text-align: center;
+        font-family: Georgia, serif;
+        line-height: 1.05;
+        font-size: 21px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      .portal-mark span {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin-top: 5px;
+      }
+      .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        font-size: 11px;
+      }
+      .header-tools .time {
+        line-height: 1.7;
+        color: #effaff;
+      }
+      .login {
+        background: #164f37;
+        color: #fff;
+        border: 1px solid #ffffff55;
+        border-radius: 7px;
+        padding: 8px 20px;
+        font-weight: 700;
+      }
+      .login:hover {
+        background: #0e3e2a;
+      }
+      .nav-shell {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 4px 14px #16324b0b;
+        position: relative;
+        z-index: 3;
+      }
+      .navbar {
+        padding: 0;
+      }
+      .navbar-custom .nav-link {
+        color: #24445f !important;
+        font-weight: 650;
+        font-size: 13px;
+        padding: 16px 18px !important;
+        border-bottom: 3px solid transparent;
+        transition: 0.2s;
+      }
+      .navbar-custom .nav-link:hover,
+      .navbar-custom .nav-link.active {
+        color: #087fc1 !important;
+        background: #eef8fd;
+        border-bottom-color: var(--gold);
+      }
+      .navbar-toggler {
+        margin: 8px;
+        border-color: #b8d2e3;
+      }
+      .navbar-toggler-icon {
+        filter: invert(0.3);
+      }
+      main {
+        padding-bottom: 36px;
+      }
+      .campaign {
+        margin: 24px auto 22px;
+        background: linear-gradient(120deg, #e4f5fc, #f9fcff 55%, #e9f4fb);
+        border: 1px solid #d5e8f3;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 28px #0a497014;
+        position: relative;
+      }
+      .campaign-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 17px 22px 8px;
+        gap: 12px;
+      }
+      .eyebrow {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.7px;
+        color: #087fc1;
+        font-weight: 800;
+      }
+      .campaign-head h2 {
+        font-size: 20px;
+        margin: 4px 0 0;
+        color: #123e60;
+        font-weight: 800;
+      }
+      .campaign-head .campaign-note {
+        font-size: 12px;
+        color: var(--muted);
+        text-align: right;
+      }
+      .banner-grid {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr 1fr;
+        gap: 12px;
+        padding: 12px 18px 20px;
+      }
+      .banner {
+        min-height: 155px;
+        border-radius: 12px;
+        padding: 18px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: white;
+        box-shadow: inset 0 0 0 1px #ffffff2c;
+      }
+      .banner:after {
+        content: "";
+        position: absolute;
+        width: 170px;
+        height: 170px;
+        border: 22px solid #ffffff20;
+        border-radius: 50%;
+        right: -35px;
+        bottom: -80px;
+      }
+      .banner > * {
+        position: relative;
+        z-index: 1;
+      }
+      .banner.primary {
+        background: linear-gradient(125deg, #07528b, #139dcc);
+      }
+      .banner.secondary {
+        background: linear-gradient(125deg, #176b70, #21a69c);
+      }
+      .banner.tertiary {
+        background: linear-gradient(125deg, #183f70, #526fb0);
+      }
+      .banner .tag {
+        font-size: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        opacity: 0.85;
+      }
+      .banner h3 {
+        font-size: 19px;
+        font-weight: 800;
+        max-width: 290px;
+        margin: 8px 0;
+      }
+      .banner p {
+        font-size: 11px;
+        margin: 0;
+        max-width: 300px;
+        color: #e8f8ff;
+      }
+      .banner .banner-icon {
+        position: absolute;
+        right: 18px;
+        bottom: 17px;
+        font-size: 45px;
+        color: #ffffff70;
+      }
+      .dots {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        padding: 0 0 14px;
+      }
+      .dots i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #b4ccdc;
+      }
+      .dots i:first-child {
+        width: 20px;
+        border-radius: 8px;
+        background: #0789c5;
+      }
+      #services[hidden] {
+        display: none !important;
+      }
+      .selected-state-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        background: #e8f6fc;
+        color: #087fc1;
+        font-size: 11px;
+        font-weight: 750;
+      }
+      .selected-state-label:empty {
+        display: none;
+      }
+      .section-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 12px;
+        margin: 30px 0 14px;
+      }
+      .section-heading h2 {
+        font-size: 21px;
+        font-weight: 800;
+        margin: 0;
+        color: #173d5c;
+      }
+      .section-heading p {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 13px;
+      }
+      .service-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 19px 17px;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        box-shadow: 0 4px 12px #16324b08;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          border-color 0.2s;
+      }
+      .service-card:hover {
+        transform: translateY(-3px);
+        border-color: #9dcde5;
+        box-shadow: 0 10px 22px #0b54851a;
+      }
+      .service-icon-wrap {
+        width: 47px;
+        height: 47px;
+        flex: 0 0 47px;
+        border-radius: 13px;
+        background: #eaf6fc;
+        display: grid;
+        place-items: center;
+        color: #087fc1;
+        font-size: 20px;
+      }
+      .service-title {
+        font-size: 13px;
+        font-weight: 750;
+        line-height: 1.35;
+        color: #23445f;
+      }
+      .service-arrow {
+        margin-left: auto;
+        color: #9bb1c1;
+        font-size: 12px;
+      }
+      .state-area {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 27px;
+        margin: 32px 0 0;
+        box-shadow: 0 8px 25px #153b570b;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        align-items: center;
+        gap: 24px;
+      }
+      .state-kicker {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.6px;
+        color: #0785c1;
+        font-weight: 800;
+      }
+      .state-area h2 {
+        font-size: 22px;
+        font-weight: 800;
+        color: #173d5c;
+        margin: 6px 0;
+      }
+      .state-area p {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .state-control label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #456078;
+        margin-bottom: 7px;
+      }
+      .form-select {
+        border: 1px solid #c8dbe8;
+        border-radius: 9px;
+        padding: 12px 14px;
+        font-size: 14px;
+        color: #23445f;
+        box-shadow: none;
+      }
+      .form-select:focus {
+        border-color: #159bd3;
+        box-shadow: 0 0 0 3px #159bd31c;
+      }
+      .state-help {
+        font-size: 11px;
+        color: #72899b;
+        margin-top: 8px;
+      }
+      .bot-widget {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        z-index: 10;
+        background: #075b91;
+        color: #fff;
+        border: 1px solid #ffffff40;
+        border-radius: 50px;
+        padding: 12px 17px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 8px 24px #073b7050;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 700;
+        transition: 0.2s;
+      }
+      .bot-widget:hover {
+        transform: translateY(-3px);
+        background: #064875;
+      }
+      footer {
+        margin-top: 20px;
+        background: linear-gradient(115deg, #087fc1, #16a6dc);
+        color: #fff;
+        padding: 30px 0 0;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 28px;
+      }
+      .footer-col h5 {
+        font-size: 14px;
+        font-weight: 800;
+        margin: 0 0 12px;
+        padding-bottom: 9px;
+        border-bottom: 1px solid #ffffff55;
+      }
+      .footer-col p,
+      .footer-col li,
+      .footer-col a {
+        font-size: 12px;
+        line-height: 1.7;
+        color: #e7f7ff;
+      }
+      .footer-col ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      .footer-col a {
+        text-decoration: none;
+      }
+      .footer-col a:hover {
+        text-decoration: underline;
+        color: #fff;
+      }
+      .sub-footer {
+        margin-top: 24px;
+        background: #07558a;
+        padding: 14px 0;
+        text-align: center;
+        font-size: 11px;
+        color: #d9f0fc;
+      }
+      .notice {
+        background: #fff2d7;
+        color: #684a16;
+        text-align: center;
+        padding: 11px 14px;
+        font-size: 12px;
+        font-weight: 650;
+        margin-top: 16px;
+      }
+      @media (max-width: 900px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .banner-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .banner.primary {
+          grid-column: 1/-1;
+        }
+        .portal-mark {
+          display: none;
+        }
+        .header-tools {
+          margin-left: auto;
+        }
+        .state-area {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .utility .container {
+          justify-content: center;
+        }
+        .brand {
+          gap: 9px;
+        }
+        .emblem {
+          width: 42px;
+          height: 46px;
+          font-size: 22px;
+        }
+        .brand-copy h1 {
+          font-size: 18px;
+        }
+        .brand-copy p {
+          font-size: 10px;
+        }
+        .header-tools {
+          width: 100%;
+          justify-content: space-between;
+          margin-top: 12px;
+        }
+        .masthead .container {
+          display: block !important;
+        }
+        .campaign {
+          margin-top: 15px;
+        }
+        .campaign-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .campaign-head .campaign-note {
+          text-align: left;
+        }
+        .banner-grid {
+          grid-template-columns: 1fr;
+          padding: 10px 12px 16px;
+        }
+        .banner.primary {
+          grid-column: auto;
+        }
+        .banner {
+          min-height: 130px;
+        }
+        .services-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 9px;
+        }
+        .service-card {
+          padding: 13px 10px;
+          min-height: 105px;
+          display: block;
+        }
+        .service-icon-wrap {
+          margin-bottom: 10px;
+          width: 39px;
+          height: 39px;
+          font-size: 17px;
+        }
+        .service-title {
+          font-size: 11px;
+        }
+        .service-arrow {
+          display: none;
+        }
+        .section-heading {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .state-area {
+          padding: 20px;
+        }
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .bot-widget {
+          right: 12px;
+          bottom: 12px;
+          padding: 11px 14px;
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="utility">
+      <div class="container">
+        <span
+          ><i class="fa-solid fa-landmark me-2"></i>Ministry of Road Transport
+          &amp; Highways</span
+        >
+        <div>
+          <a href="#main"
+            ><i class="fa-solid fa-universal-access me-1"></i>Skip to main
+            content</a
+          ><a href="#"><i class="fa-solid fa-globe me-1"></i>English / Hindi</a>
+        </div>
+      </div>
+    </div>
+    <header class="masthead">
+      <div
+        class="container d-flex justify-content-between align-items-center flex-wrap"
+      >
+        <div class="brand">
+          <div class="emblem"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="brand-copy">
+            <h1>PARIVAHAN SEWA</h1>
+            <p>
+              Government of India · Ministry of Road Transport &amp; Highways<br />e-Services
+              for Driving Licence and Vehicle Registration
+            </p>
+          </div>
+        </div>
+        <div class="portal-mark">
+          सारथी <span>PARIVAHAN&nbsp; | &nbsp;SARATHI</span>
+        </div>
+        <div class="header-tools">
+          <div class="time">
+            <strong>DATE:</strong> 30-10-2026 &nbsp; <strong>TIME:</strong>
+            <span id="clock">--:--:--</span><br /><span
+              >Language: &nbsp; अ / A &nbsp; · &nbsp; A- &nbsp; A &nbsp;
+              A+</span
+            >
+          </div>
+          <button class="login" type="button">
+            <i class="fa-solid fa-right-to-bracket me-1"></i>Login</button
+          ><span class="small">Helpline: 0120-2459171</span>
+        </div>
+      </div>
+    </header>
+    <div class="nav-shell">
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="#"
+                  ><i class="fa-solid fa-house me-1"></i>Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#services">Online Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Informational Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#footer">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <main class="container" id="main">
+      <section class="campaign" aria-label="Portal highlights">
+        <div class="campaign-head">
+          <div>
+            <div class="eyebrow">Sarathi Parivahan · Citizen services</div>
+            <h2>Driving services, made simpler.</h2>
+          </div>
+          <div class="campaign-note">
+            A single place to access essential<br />driving licence services
+            across India.
+          </div>
+        </div>
+        <div class="banner-grid">
+          <article class="banner primary">
+            <div>
+              <div class="tag">Your journey starts here</div>
+              <h3>One portal. Essential driving licence services.</h3>
+              <p>
+                Access applications, renewals, payments and status updates
+                through Sarathi Parivahan.
+              </p>
+            </div>
+            <i class="fa-solid fa-car-side banner-icon"></i>
+          </article>
+          <article class="banner secondary">
+            <div>
+              <div class="tag">Quick and convenient</div>
+              <h3>Manage your licence online</h3>
+              <p>
+                Choose a service and continue with your state-specific Sarathi
+                module.
+              </p>
+            </div>
+            <i class="fa-solid fa-id-card banner-icon"></i>
+          </article>
+          <article class="banner tertiary">
+            <div>
+              <div class="tag">Government of India</div>
+              <h3>Digital transport services</h3>
+              <p>e-Services for Driving Licence and Vehicle Registration.</p>
+            </div>
+            <i class="fa-solid fa-road banner-icon"></i>
+          </article>
+        </div>
+        <div class="dots"><i></i><i></i><i></i><i></i></div>
+      </section>
+      <section class="state-area">
+        <div>
+          <div class="state-kicker">Continue to your state portal</div>
+          <h2>
+            <i class="fa-solid fa-location-dot me-2" style="color: #0785c1"></i
+            >Select State Name to Avail Services
+          </h2>
+          <p>Choose your respective State/UT to proceed to Sarathi portal</p>
+        </div>
+        <div class="state-control">
+          <label for="stateSelect">Select your State / Union Territory</label
+          ><select class="form-select" id="stateSelect">
+            <option selected disabled value="">-- Select State Name --</option>
+            <option value="DL">Delhi</option>
+            <option value="MH">Maharashtra</option>
+            <option value="KA">Karnataka</option>
+            <option value="TN">Tamil Nadu</option>
+            <option value="UP">Uttar Pradesh</option>
+            <option value="GJ">Gujarat</option>
+          </select>
+          <div class="state-help">
+            <i class="fa-solid fa-circle-info me-1"></i>Online services in this
+            portal are available only for the States listed below
+          </div>
+        </div>
+      </section>
+      <section id="services" hidden aria-live="polite">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Explore online services</div>
+            <h2>Driving Licence Services</h2>
+            <div class="selected-state-label" id="selectedStateLabel"></div>
+          </div>
+          <p>Select a service to get started</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-id-card"></i>
+            </div>
+            <div class="service-title">Apply for Learner Licence</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </div>
+          <div class="service-card">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-address-card"></i>
+            </div>
+            <div class="service-title">Apply for Driving Licence</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </div>
+          <div class="service-card">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-rotate"></i>
+            </div>
+            <div class="service-title">Apply for DL Renewal</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </div>
+          <div class="service-card">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-clone"></i>
+            </div>
+            <div class="service-title">Apply for Duplicate DL</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </div>
+          <div class="service-card">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-file-pen"></i>
+            </div>
+            <div class="service-title">Change of Address</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </div>
+          <div class="service-card">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            <div class="service-title">International Driving Permit (IDP)</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </div>
+          <div class="service-card">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+            <div class="service-title">Fee Payment</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </div>
+          <div class="service-card">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="service-title">Check Application Status</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div class="bot-widget" id="vAnyaBot">
+      <i class="fa-solid fa-robot fa-lg"></i
+      ><span>Ask Vahan/Sarathi Assistant</span>
+    </div>
+    <footer id="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-col">
+            <h5>About Parivahan</h5>
+            <p>
+              A flagship initiative by MoRTH providing automated, unified, and
+              citizen-friendly access to transport services across India.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h5>Important Links</h5>
+            <ul>
+              <li><a href="#">National Register Services</a></li>
+              <li><a href="#">Vahan Services</a></li>
+              <li><a href="#">Sarathi Services</a></li>
+              <li><a href="#">mParivahan Mobile App</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Help &amp; Support</h5>
+            <ul>
+              <li><a href="#">Frequently Asked Questions</a></li>
+              <li><a href="#">User Manuals</a></li>
+              <li><a href="#">Grievance Redressal</a></li>
+              <li><a href="#">Terms of Use &amp; Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="notice">
+          Designed &amp; Developed by National Informatics Centre (NIC) |
+          Ministry of Road Transport &amp; Highways
+        </div>
+      </div>
+      <div class="sub-footer">
+        Government of India · Ministry of Road Transport &amp; Highways
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const stateSelect = document.getElementById("stateSelect");
+      const servicesSection = document.getElementById("services");
+      const selectedStateLabel = document.getElementById("selectedStateLabel");
+      stateSelect.addEventListener("change", () => {
+        const selectedOption = stateSelect.options[stateSelect.selectedIndex];
+        if (!stateSelect.value) {
+          servicesSection.hidden = true;
+          selectedStateLabel.textContent = "";
+          return;
+        }
+        selectedStateLabel.innerHTML =
+          '<i class="fa-solid fa-location-dot" aria-hidden="true"></i> Selected state: ' +
+          selectedOption.textContent;
+        servicesSection.hidden = false;
+        servicesSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      document
+        .getElementById("vAnyaBot")
+        .addEventListener("click", () =>
+          alert("VANI/Sarathi Chatbot initialized. How can I help you today?"),
+        );
+      function updateClock() {
+        document.getElementById("clock").textContent =
+          new Date().toLocaleTimeString("en-IN", { hour12: true });
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>
