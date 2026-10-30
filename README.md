@@ -39,12 +39,6 @@ As upcoming adults, we student will use this site to apply for our driving licen
 - Add support for multiple Indian languages.
 - Test the design with real users and improve it based on their feedback.
 
-## Disclaimer
-
-This is an independent student project created for educational and hackathon purposes. It is not affiliated with the Government of India or the official Sarathi Parivahan portal.
-
-The project is a frontend demonstration. It does not process driving licence applications, payments, or government records.
-
 For official services, visit the [Sarathi Parivahan portal](https://sarathi.parivahan.gov.in/).
 
 ## Built for the Web Vision Hackathon
