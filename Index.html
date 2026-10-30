@@ -609,6 +609,139 @@
           font-size: 11px;
         }
       }
+
+      /* Working local Sarathi help-chat */
+      .chat-panel {
+        position: fixed;
+        right: 22px;
+        bottom: 88px;
+        width: min(390px, calc(100vw - 28px));
+        height: min(560px, calc(100vh - 125px));
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 20;
+        background: #fff;
+        border: 1px solid #d8e5ee;
+        border-radius: 17px;
+        box-shadow: 0 18px 55px #092f4b35;
+      }
+      .chat-panel.open { display: flex; }
+      .chat-header {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 15px 16px;
+        color: #fff;
+        background: linear-gradient(115deg, #07558a, #119bd0);
+      }
+      .chat-avatar {
+        width: 39px;
+        height: 39px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #ffffff25;
+        font-size: 18px;
+      }
+      .chat-heading { flex: 1; min-width: 0; }
+      .chat-heading strong { display: block; font-size: 14px; }
+      .chat-heading small { display: block; margin-top: 2px; color: #e1f5ff; font-size: 10px; }
+      .chat-close {
+        border: 0;
+        color: #fff;
+        background: transparent;
+        font-size: 20px;
+        line-height: 1;
+        padding: 5px;
+        cursor: pointer;
+      }
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px 13px;
+        background: #f5f9fc;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+      .chat-message {
+        max-width: 88%;
+        padding: 10px 12px;
+        border-radius: 13px;
+        font-size: 12px;
+        line-height: 1.55;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .chat-message.bot {
+        align-self: flex-start;
+        color: #29465d;
+        background: #fff;
+        border: 1px solid #e0eaf1;
+        border-top-left-radius: 4px;
+      }
+      .chat-message.user {
+        align-self: flex-end;
+        color: #fff;
+        background: #087fc1;
+        border-top-right-radius: 4px;
+      }
+      .chat-quick {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 10px 12px 0;
+        background: #fff;
+      }
+      .chat-quick button {
+        border: 1px solid #c9e1ef;
+        border-radius: 20px;
+        background: #f2f9fd;
+        color: #086da5;
+        padding: 6px 9px;
+        font-size: 10px;
+        cursor: pointer;
+      }
+      .chat-quick button:hover { background: #e2f3fb; }
+      .chat-compose {
+        display: flex;
+        gap: 8px;
+        padding: 11px 12px 13px;
+        border-top: 1px solid #e5edf2;
+        background: #fff;
+      }
+      .chat-compose input {
+        min-width: 0;
+        flex: 1;
+        border: 1px solid #cbdce7;
+        border-radius: 22px;
+        padding: 10px 13px;
+        outline: none;
+        font-size: 12px;
+      }
+      .chat-compose input:focus { border-color: #159bd3; box-shadow: 0 0 0 3px #159bd31a; }
+      .chat-send {
+        width: 39px;
+        height: 39px;
+        flex: 0 0 39px;
+        border: 0;
+        border-radius: 50%;
+        color: #fff;
+        background: #087fc1;
+        cursor: pointer;
+      }
+      .chat-disclaimer {
+        padding: 0 12px 9px;
+        color: #8093a1;
+        background: #fff;
+        text-align: center;
+        font-size: 9px;
+      }
+      @media (max-width: 560px) {
+        .chat-panel { right: 10px; bottom: 75px; height: min(540px, calc(100vh - 100px)); }
+      }
+
     </style>
   </head>
   <body>
@@ -837,10 +970,33 @@
         </div>
       </section>
     </main>
-    <div class="bot-widget" id="vAnyaBot">
-      <i class="fa-solid fa-robot fa-lg"></i
-      ><span>Ask Vahan/Sarathi Assistant</span>
+    <div class="bot-widget" id="vAnyaBot" role="button" tabindex="0" aria-label="Open Sarathi assistant">
+      <i class="fa-solid fa-robot fa-lg"></i><span>Ask Vahan/Sarathi Assistant</span>
     </div>
+    <section class="chat-panel" id="chatPanel" aria-label="Sarathi help assistant" aria-hidden="true">
+      <div class="chat-header">
+        <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
+        <div class="chat-heading">
+          <strong>VANI · Sarathi Assistant</strong>
+          <small><i class="fa-solid fa-circle" style="font-size:7px;color:#8ff0b2"></i> Online · Instant help</small>
+        </div>
+        <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">&times;</button>
+      </div>
+      <div class="chat-messages" id="chatMessages" aria-live="polite">
+        <div class="chat-message bot">Namaste! I’m the Sarathi help assistant. I can guide you through common driving licence services. What would you like help with?</div>
+      </div>
+      <div class="chat-quick" id="chatQuick">
+        <button type="button" data-question="How do I apply for a learner licence?">Learner licence</button>
+        <button type="button" data-question="How can I renew my driving licence?">DL renewal</button>
+        <button type="button" data-question="How do I check application status?">Application status</button>
+        <button type="button" data-question="Which documents are required?">Required documents</button>
+      </div>
+      <form class="chat-compose" id="chatForm">
+        <input id="chatInput" type="text" placeholder="Type your question..." autocomplete="off" aria-label="Type your question" />
+        <button class="chat-send" type="submit" aria-label="Send message"><i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+      <div class="chat-disclaimer">Demo assistant · For official applications, use the Sarathi Parivahan portal.</div>
+    </section>
     <footer id="footer">
       <div class="container">
         <div class="footer-top">
@@ -897,11 +1053,133 @@
         servicesSection.hidden = false;
         servicesSection.scrollIntoView({ behavior: "smooth", block: "start" });
       });
-      document
-        .getElementById("vAnyaBot")
-        .addEventListener("click", () =>
-          alert("VANI/Sarathi Chatbot initialized. How can I help you today?"),
-        );
+
+      // Local FAQ chatbot: works in this single HTML file without an API key.
+      const chatLauncher = document.getElementById("vAnyaBot");
+      const chatPanel = document.getElementById("chatPanel");
+      const chatClose = document.getElementById("chatClose");
+      const chatMessages = document.getElementById("chatMessages");
+      const chatForm = document.getElementById("chatForm");
+      const chatInput = document.getElementById("chatInput");
+      const chatQuick = document.getElementById("chatQuick");
+
+      function openChat() {
+        chatPanel.classList.add("open");
+        chatPanel.setAttribute("aria-hidden", "false");
+        chatInput.focus();
+      }
+      function closeChat() {
+        chatPanel.classList.remove("open");
+        chatPanel.setAttribute("aria-hidden", "true");
+      }
+      chatLauncher.addEventListener("click", openChat);
+      chatLauncher.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openChat();
+        }
+      });
+      chatClose.addEventListener("click", closeChat);
+
+      function addChatMessage(message, sender) {
+        const bubble = document.createElement("div");
+        bubble.className = "chat-message " + sender;
+        bubble.textContent = message;
+        chatMessages.appendChild(bubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      const faqAnswers = [
+        {
+          keys: ["learner", "ll", "learning licence"],
+          answer: "To apply for a Learner Licence:\n1. Select your State/UT on this page.\n2. Choose “Apply for Learner Licence”.\n3. Follow the Sarathi application steps, enter your details and upload the requested documents.\n4. Pay the applicable fee and complete the required test/appointment process shown by your state portal.\n\nRequirements and online-test availability can vary by state."
+        },
+        {
+          keys: ["new driving licence", "apply for driving", "permanent licence", "driving licence apply"],
+          answer: "To apply for a permanent Driving Licence, first select your State/UT and choose “Apply for Driving Licence”. Usually, you must hold a valid Learner Licence and apply after the minimum waiting period. Follow the portal instructions to book a driving test, if required."
+        },
+        {
+          keys: ["renew", "renewal", "expired licence", "expire"],
+          answer: "For DL renewal, select your State/UT and choose “Apply for DL Renewal”. Keep your driving licence details and any documents requested by the portal ready. The required medical certificate, fee and process may depend on your age and state."
+        },
+        {
+          keys: ["duplicate", "lost licence", "damaged licence"],
+          answer: "If your driving licence is lost or damaged, select your State/UT and choose “Apply for Duplicate DL”. The portal may ask for your DL number, identity details and supporting documents. If it was stolen, check whether a police report is required by your state."
+        },
+        {
+          keys: ["address", "change address", "change of address"],
+          answer: "For a change of address, select your State/UT and choose “Change of Address”. Enter your driving licence details and provide the address proof requested by the portal. The exact document list and fee are state-specific."
+        },
+        {
+          keys: ["international", "idp", "international driving permit"],
+          answer: "For an International Driving Permit (IDP), select your State/UT and choose “International Driving Permit (IDP)”. Check the portal's eligibility and document requirements. A valid Indian driving licence and passport-related documents are commonly requested; confirm the current list on the official portal."
+        },
+        {
+          keys: ["fee", "payment", "pay", "receipt", "challan"],
+          answer: "To pay a Sarathi service fee, select your State/UT and choose “Fee Payment”. Enter the application or licence details requested by the portal. Use only the official payment gateway and save your receipt."
+        },
+        {
+          keys: ["status", "track", "application number", "where is my"],
+          answer: "To check your application status:\n1. Select your State/UT.\n2. Choose “Check Application Status”.\n3. Enter the application number and date of birth or other details requested.\n\nI cannot access your personal application record from this demo."
+        },
+        {
+          keys: ["document", "documents", "proof", "required", "what should i carry"],
+          answer: "Documents depend on the service and your State/UT. Commonly requested items include proof of age, proof of address, identity details, a photograph/signature where applicable, and your existing Learner Licence or Driving Licence. Check the exact checklist shown in your state portal before submitting."
+        },
+        {
+          keys: ["age", "eligible", "eligibility", "minimum age"],
+          answer: "Eligibility depends on the vehicle class. In general, the minimum age is 16 for certain gearless two-wheelers (with conditions), and 18 for most other non-transport vehicles. Commercial/transport categories have additional conditions. Confirm the current rules for your category on the official portal."
+        },
+        {
+          keys: ["test", "driving test", "learner test", "slot", "appointment"],
+          answer: "Test and appointment options are shown after you select your State/UT and start the relevant application. Use the appointment or slot-booking option provided by that state portal. Available dates and test requirements vary by location."
+        },
+        {
+          keys: ["state", "select state", "not showing", "services not showing"],
+          answer: "Choose a State/UT from the dropdown titled “Select State Name to Avail Services”. The driving licence service cards will appear below it. Only the states listed in this demo dropdown are currently included."
+        },
+        {
+          keys: ["contact", "helpline", "phone", "support"],
+          answer: "The helpline number displayed on this demo page is 0120-2459171. For official assistance, use the contact/help options on the Parivahan portal."
+        },
+        {
+          keys: ["official website", "real website", "link", "parivahan"],
+          answer: "You can visit the official Parivahan portal at https://parivahan.gov.in/ . Make sure the address is correct before entering personal information or making a payment."
+        }
+      ];
+
+      function getBotAnswer(question) {
+        const q = question.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+        for (const item of faqAnswers) {
+          if (item.keys.some((key) => q.includes(key))) return item.answer;
+        }
+        if (/\b(hi|hello|hey|namaste)\b/.test(q)) {
+          return "Namaste! I can help with Learner Licence, new Driving Licence, renewal, duplicate licence, address change, IDP, fee payment, application status and document requirements. Ask me about any of these.";
+        }
+        return "I’m not sure about that yet. I can answer common questions about Learner Licence, Driving Licence, renewal, duplicate DL, address change, IDP, fee payment, application status, documents and appointments. For account-specific help, please use the official Sarathi portal: https://sarathi.parivahan.gov.in/";
+      }
+
+      function sendChatMessage(message) {
+        const question = message.trim();
+        if (!question) return;
+        addChatMessage(question, "user");
+        chatInput.value = "";
+        // Keep the interaction asynchronous-looking while remaining fully local.
+        window.setTimeout(() => addChatMessage(getBotAnswer(question), "bot"), 180);
+      }
+
+      chatForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        sendChatMessage(chatInput.value);
+      });
+      chatQuick.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-question]");
+        if (button) sendChatMessage(button.dataset.question);
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && chatPanel.classList.contains("open")) closeChat();
+      });
+
       function updateClock() {
         document.getElementById("clock").textContent =
           new Date().toLocaleTimeString("en-IN", { hour12: true });
