@@ -1,0 +1,1594 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sarathi Parivahan - Driving Licence Services</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #073b70;
+        --blue: #087fc1;
+        --sky: #19a7e0;
+        --ink: #16324b;
+        --muted: #617487;
+        --gold: #f4b544;
+        --paper: #f3f7fb;
+        --line: #dce7f0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+      }
+      a {
+        color: inherit;
+      }
+      .utility {
+        background: #062d54;
+        color: #eaf6ff;
+        font-size: 12px;
+        padding: 7px 0;
+      }
+      .utility .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .utility a {
+        text-decoration: none;
+        color: #fff;
+        margin-left: 16px;
+      }
+      .masthead {
+        background: linear-gradient(112deg, #087fc1, #19a7e0);
+        color: #fff;
+        padding: 17px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .masthead:after {
+        content: "";
+        position: absolute;
+        width: 380px;
+        height: 380px;
+        border: 1px solid #ffffff25;
+        border-radius: 50%;
+        right: -100px;
+        top: -250px;
+        box-shadow:
+          0 0 0 35px #ffffff0c,
+          0 0 0 75px #ffffff09;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        position: relative;
+        z-index: 1;
+      }
+      .emblem {
+        width: 52px;
+        height: 58px;
+        border-radius: 13px;
+        background: #fff;
+        color: var(--navy);
+        display: grid;
+        place-items: center;
+        font-size: 27px;
+        box-shadow: 0 5px 14px #00365b35;
+      }
+      .brand-copy h1 {
+        font-size: clamp(19px, 2vw, 27px);
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        margin: 0;
+      }
+      .brand-copy p {
+        font-size: 12px;
+        line-height: 1.35;
+        margin: 3px 0 0;
+        color: #e5f6ff;
+      }
+      .portal-mark {
+        text-align: center;
+        font-family: Georgia, serif;
+        line-height: 1.05;
+        font-size: 21px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      .portal-mark span {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin-top: 5px;
+      }
+      .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        font-size: 11px;
+      }
+      .header-tools .time {
+        line-height: 1.7;
+        color: #effaff;
+      }
+      .login {
+        background: #164f37;
+        color: #fff;
+        border: 1px solid #ffffff55;
+        border-radius: 7px;
+        padding: 8px 20px;
+        font-weight: 700;
+      }
+      .login:hover {
+        background: #0e3e2a;
+      }
+      .nav-shell {
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 4px 14px #16324b0b;
+        position: relative;
+        z-index: 3;
+      }
+      .navbar {
+        padding: 0;
+      }
+      .navbar-custom .nav-link {
+        color: #24445f !important;
+        font-weight: 650;
+        font-size: 13px;
+        padding: 16px 18px !important;
+        border-bottom: 3px solid transparent;
+        transition: 0.2s;
+      }
+      .navbar-custom .nav-link:hover,
+      .navbar-custom .nav-link.active {
+        color: #087fc1 !important;
+        background: #eef8fd;
+        border-bottom-color: var(--gold);
+      }
+      .navbar-toggler {
+        margin: 8px;
+        border-color: #b8d2e3;
+      }
+      .navbar-toggler-icon {
+        filter: invert(0.3);
+      }
+      main {
+        padding-bottom: 36px;
+      }
+      .campaign {
+        margin: 24px auto 22px;
+        background: linear-gradient(120deg, #e4f5fc, #f9fcff 55%, #e9f4fb);
+        border: 1px solid #d5e8f3;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 28px #0a497014;
+        position: relative;
+      }
+      .campaign-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 17px 22px 8px;
+        gap: 12px;
+      }
+      .eyebrow {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.7px;
+        color: #087fc1;
+        font-weight: 800;
+      }
+      .campaign-head h2 {
+        font-size: 20px;
+        margin: 4px 0 0;
+        color: #123e60;
+        font-weight: 800;
+      }
+      .campaign-head .campaign-note {
+        font-size: 12px;
+        color: var(--muted);
+        text-align: right;
+      }
+      .banner-grid {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr 1fr;
+        gap: 12px;
+        padding: 12px 18px 20px;
+      }
+      .banner {
+        min-height: 155px;
+        border-radius: 12px;
+        padding: 18px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: white;
+        box-shadow: inset 0 0 0 1px #ffffff2c;
+      }
+      .banner:after {
+        content: "";
+        position: absolute;
+        width: 170px;
+        height: 170px;
+        border: 22px solid #ffffff20;
+        border-radius: 50%;
+        right: -35px;
+        bottom: -80px;
+      }
+      .banner > * {
+        position: relative;
+        z-index: 1;
+      }
+      .banner.primary {
+        background: linear-gradient(125deg, #07528b, #139dcc);
+      }
+      .banner.secondary {
+        background: linear-gradient(125deg, #176b70, #21a69c);
+      }
+      .banner.tertiary {
+        background: linear-gradient(125deg, #183f70, #526fb0);
+      }
+      .banner .tag {
+        font-size: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        opacity: 0.85;
+      }
+      .banner h3 {
+        font-size: 19px;
+        font-weight: 800;
+        max-width: 290px;
+        margin: 8px 0;
+      }
+      .banner p {
+        font-size: 11px;
+        margin: 0;
+        max-width: 300px;
+        color: #e8f8ff;
+      }
+      .banner .banner-icon {
+        position: absolute;
+        right: 18px;
+        bottom: 17px;
+        font-size: 45px;
+        color: #ffffff70;
+      }
+      .dots {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        padding: 0 0 14px;
+      }
+      .dots i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #b4ccdc;
+      }
+      .dots i:first-child {
+        width: 20px;
+        border-radius: 8px;
+        background: #0789c5;
+      }
+      #services[hidden] {
+        display: none !important;
+      }
+      .selected-state-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        background: #e8f6fc;
+        color: #087fc1;
+        font-size: 11px;
+        font-weight: 750;
+      }
+      .selected-state-label:empty {
+        display: none;
+      }
+      .section-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 12px;
+        margin: 30px 0 14px;
+      }
+      .section-heading h2 {
+        font-size: 21px;
+        font-weight: 800;
+        margin: 0;
+        color: #173d5c;
+      }
+      .section-heading p {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 13px;
+      }
+      .service-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 19px 17px;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        box-shadow: 0 4px 12px #16324b08;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          border-color 0.2s;
+      }
+      .service-card:hover {
+        transform: translateY(-3px);
+        border-color: #9dcde5;
+        box-shadow: 0 10px 22px #0b54851a;
+      }
+      .service-icon-wrap {
+        width: 47px;
+        height: 47px;
+        flex: 0 0 47px;
+        border-radius: 13px;
+        background: #eaf6fc;
+        display: grid;
+        place-items: center;
+        color: #087fc1;
+        font-size: 20px;
+      }
+      .service-title {
+        font-size: 13px;
+        font-weight: 750;
+        line-height: 1.35;
+        color: #23445f;
+      }
+      .service-arrow {
+        margin-left: auto;
+        color: #9bb1c1;
+        font-size: 12px;
+      }
+      .state-area {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 27px;
+        margin: 32px 0 0;
+        box-shadow: 0 8px 25px #153b570b;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        align-items: center;
+        gap: 24px;
+      }
+      .state-kicker {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.6px;
+        color: #0785c1;
+        font-weight: 800;
+      }
+      .state-area h2 {
+        font-size: 22px;
+        font-weight: 800;
+        color: #173d5c;
+        margin: 6px 0;
+      }
+      .state-area p {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .state-control label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #456078;
+        margin-bottom: 7px;
+      }
+      .form-select {
+        border: 1px solid #c8dbe8;
+        border-radius: 9px;
+        padding: 12px 14px;
+        font-size: 14px;
+        color: #23445f;
+        box-shadow: none;
+      }
+      .form-select:focus {
+        border-color: #159bd3;
+        box-shadow: 0 0 0 3px #159bd31c;
+      }
+      .state-help {
+        font-size: 11px;
+        color: #72899b;
+        margin-top: 8px;
+      }
+      .bot-widget {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        z-index: 10;
+        background: #075b91;
+        color: #fff;
+        border: 1px solid #ffffff40;
+        border-radius: 50px;
+        padding: 12px 17px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 8px 24px #073b7050;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 700;
+        transition: 0.2s;
+      }
+      .bot-widget:hover {
+        transform: translateY(-3px);
+        background: #064875;
+      }
+      footer {
+        margin-top: 20px;
+        background: linear-gradient(115deg, #087fc1, #16a6dc);
+        color: #fff;
+        padding: 30px 0 0;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 28px;
+      }
+      .footer-col h5 {
+        font-size: 14px;
+        font-weight: 800;
+        margin: 0 0 12px;
+        padding-bottom: 9px;
+        border-bottom: 1px solid #ffffff55;
+      }
+      .footer-col p,
+      .footer-col li,
+      .footer-col a {
+        font-size: 12px;
+        line-height: 1.7;
+        color: #e7f7ff;
+      }
+      .footer-col ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      .footer-col a {
+        text-decoration: none;
+      }
+      .footer-col a:hover {
+        text-decoration: underline;
+        color: #fff;
+      }
+      .sub-footer {
+        margin-top: 24px;
+        background: #07558a;
+        padding: 14px 0;
+        text-align: center;
+        font-size: 11px;
+        color: #d9f0fc;
+      }
+      .notice {
+        background: #fff2d7;
+        color: #684a16;
+        text-align: center;
+        padding: 11px 14px;
+        font-size: 12px;
+        font-weight: 650;
+        margin-top: 16px;
+      }
+      @media (max-width: 900px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .banner-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .banner.primary {
+          grid-column: 1/-1;
+        }
+        .portal-mark {
+          display: none;
+        }
+        .header-tools {
+          margin-left: auto;
+        }
+        .state-area {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .utility .container {
+          justify-content: center;
+        }
+        .brand {
+          gap: 9px;
+        }
+        .emblem {
+          width: 42px;
+          height: 46px;
+          font-size: 22px;
+        }
+        .brand-copy h1 {
+          font-size: 18px;
+        }
+        .brand-copy p {
+          font-size: 10px;
+        }
+        .header-tools {
+          width: 100%;
+          justify-content: space-between;
+          margin-top: 12px;
+        }
+        .masthead .container {
+          display: block !important;
+        }
+        .campaign {
+          margin-top: 15px;
+        }
+        .campaign-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .campaign-head .campaign-note {
+          text-align: left;
+        }
+        .banner-grid {
+          grid-template-columns: 1fr;
+          padding: 10px 12px 16px;
+        }
+        .banner.primary {
+          grid-column: auto;
+        }
+        .banner {
+          min-height: 130px;
+        }
+        .services-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 9px;
+        }
+        .service-card {
+          padding: 13px 10px;
+          min-height: 105px;
+          display: block;
+        }
+        .service-icon-wrap {
+          margin-bottom: 10px;
+          width: 39px;
+          height: 39px;
+          font-size: 17px;
+        }
+        .service-title {
+          font-size: 11px;
+        }
+        .service-arrow {
+          display: none;
+        }
+        .section-heading {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .state-area {
+          padding: 20px;
+        }
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .bot-widget {
+          right: 12px;
+          bottom: 12px;
+          padding: 11px 14px;
+          font-size: 11px;
+        }
+      }
+
+      /* Working local Sarathi help-chat */
+      .chat-panel {
+        position: fixed;
+        right: 22px;
+        bottom: 88px;
+        width: min(390px, calc(100vw - 28px));
+        height: min(560px, calc(100vh - 125px));
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 20;
+        background: #fff;
+        border: 1px solid #d8e5ee;
+        border-radius: 17px;
+        box-shadow: 0 18px 55px #092f4b35;
+      }
+      .chat-panel.open { display: flex; }
+      .chat-header {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 15px 16px;
+        color: #fff;
+        background: linear-gradient(115deg, #07558a, #119bd0);
+      }
+      .chat-avatar {
+        width: 39px;
+        height: 39px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #ffffff25;
+        font-size: 18px;
+      }
+      .chat-heading { flex: 1; min-width: 0; }
+      .chat-heading strong { display: block; font-size: 14px; }
+      .chat-heading small { display: block; margin-top: 2px; color: #e1f5ff; font-size: 10px; }
+      .chat-close {
+        border: 0;
+        color: #fff;
+        background: transparent;
+        font-size: 20px;
+        line-height: 1;
+        padding: 5px;
+        cursor: pointer;
+      }
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px 13px;
+        background: #f5f9fc;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+      .chat-message {
+        max-width: 88%;
+        padding: 10px 12px;
+        border-radius: 13px;
+        font-size: 12px;
+        line-height: 1.55;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .chat-message.bot {
+        align-self: flex-start;
+        color: #29465d;
+        background: #fff;
+        border: 1px solid #e0eaf1;
+        border-top-left-radius: 4px;
+      }
+      .chat-message.user {
+        align-self: flex-end;
+        color: #fff;
+        background: #087fc1;
+        border-top-right-radius: 4px;
+      }
+      .chat-quick {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 10px 12px 0;
+        background: #fff;
+      }
+      .chat-quick button {
+        border: 1px solid #c9e1ef;
+        border-radius: 20px;
+        background: #f2f9fd;
+        color: #086da5;
+        padding: 6px 9px;
+        font-size: 10px;
+        cursor: pointer;
+      }
+      .chat-quick button:hover { background: #e2f3fb; }
+      .chat-compose {
+        display: flex;
+        gap: 8px;
+        padding: 11px 12px 13px;
+        border-top: 1px solid #e5edf2;
+        background: #fff;
+      }
+      .chat-compose input {
+        min-width: 0;
+        flex: 1;
+        border: 1px solid #cbdce7;
+        border-radius: 22px;
+        padding: 10px 13px;
+        outline: none;
+        font-size: 12px;
+      }
+      .chat-compose input:focus { border-color: #159bd3; box-shadow: 0 0 0 3px #159bd31a; }
+      .chat-send {
+        width: 39px;
+        height: 39px;
+        flex: 0 0 39px;
+        border: 0;
+        border-radius: 50%;
+        color: #fff;
+        background: #087fc1;
+        cursor: pointer;
+      }
+      .chat-disclaimer {
+        padding: 0 12px 9px;
+        color: #8093a1;
+        background: #fff;
+        text-align: center;
+        font-size: 9px;
+      }
+      @media (max-width: 560px) {
+        .chat-panel { right: 10px; bottom: 75px; height: min(540px, calc(100vh - 100px)); }
+      }
+
+
+      /* Interactive prototype workspace */
+      .prototype-app { margin: 28px 0 38px; }
+      .workspace-head { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:15px; }
+      .workspace-head h2 { margin:0; color:#173d5c; font-size:22px; font-weight:800; }
+      .workspace-nav { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 16px; }
+      .workspace-nav button,.action-btn { border:1px solid #c9deeb; border-radius:9px; background:#fff; color:#14577f; padding:9px 13px; font-size:12px; font-weight:700; cursor:pointer; }
+      .workspace-nav button.active,.action-btn.primary { background:#087fc1; border-color:#087fc1; color:#fff; }
+      .action-btn:hover,.workspace-nav button:hover { filter:brightness(.97); transform:translateY(-1px); }
+      .work-card { background:#fff; border:1px solid #dce7f0; border-radius:14px; padding:20px; box-shadow:0 5px 17px #16324b09; margin-bottom:14px; }
+      .work-card h3 { margin:0 0 6px; color:#173d5c; font-size:17px; font-weight:800; }
+      .work-muted { color:#718697; font-size:12px; }
+      .work-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+      .work-stat { background:#f4f9fc; border:1px solid #e0edf4; border-radius:11px; padding:15px; }
+      .work-stat strong { display:block; color:#075b91; font-size:23px; }
+      .work-stat span { color:#60798c; font-size:11px; }
+      .work-form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; margin-top:15px; }
+      .work-form .full { grid-column:1/-1; }
+      .work-form label { display:block; color:#3d5b72; font-size:11px; font-weight:750; margin-bottom:5px; }
+      .work-form input,.work-form select,.work-form textarea { width:100%; border:1px solid #cadbe6; border-radius:8px; padding:10px 11px; color:#23445f; background:#fff; font-size:13px; }
+      .work-form textarea { min-height:90px; resize:vertical; }
+      .work-form input:focus,.work-form select:focus,.work-form textarea:focus { outline:0; border-color:#159bd3; box-shadow:0 0 0 3px #159bd31a; }
+      .work-actions { display:flex; gap:9px; flex-wrap:wrap; margin-top:16px; }
+      .service-list { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+      .service-tile { text-align:left; border:1px solid #dce7f0; border-radius:11px; background:#fff; padding:14px; cursor:pointer; color:#23445f; }
+      .service-tile:hover { border-color:#8fc5e1; box-shadow:0 7px 17px #0b548514; }
+      .service-tile i { color:#087fc1; margin-right:8px; }
+      .service-tile strong { font-size:12px; }
+      .timeline { display:grid; gap:0; margin-top:14px; }
+      .timeline-row { display:flex; gap:12px; min-height:53px; }
+      .timeline-mark { width:20px; flex:0 0 20px; display:flex; flex-direction:column; align-items:center; }
+      .timeline-mark i { width:12px; height:12px; border-radius:50%; background:#d1e0e9; margin-top:3px; }
+      .timeline-row.done .timeline-mark i { background:#159b68; box-shadow:0 0 0 4px #e3f6ee; }
+      .timeline-mark:after { content:""; flex:1; width:2px; background:#dce7f0; margin:4px 0; }
+      .timeline-row:last-child .timeline-mark:after { display:none; }
+      .timeline-copy { padding-bottom:15px; }
+      .timeline-copy strong { display:block; color:#294b64; font-size:12px; }
+      .timeline-copy small { color:#8193a0; font-size:10px; }
+      .status-pill { display:inline-block; border-radius:20px; padding:4px 9px; font-size:10px; font-weight:800; background:#e8f6fc; color:#087fc1; }
+      .record-row { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #edf2f5; }
+      .record-row:last-child { border-bottom:0; }
+      .record-row strong { display:block; color:#24445f; font-size:12px; }
+      .record-row small { color:#718697; font-size:10px; }
+      .quiz-option { display:block; width:100%; text-align:left; border:1px solid #d6e4ed; border-radius:9px; background:#fff; padding:10px 12px; margin:7px 0; font-size:12px; color:#294b64; cursor:pointer; }
+      .quiz-option.selected { border-color:#087fc1; background:#edf8fd; }
+      .quiz-option.correct { border-color:#28a36a; background:#effaf4; }
+      .quiz-option.wrong { border-color:#d65a5a; background:#fff3f3; }
+      .notice-box { border-radius:10px; padding:12px 14px; background:#fff7e6; color:#76541b; font-size:11px; line-height:1.5; }
+      .empty-state { text-align:center; padding:28px 15px; color:#718697; }
+      .empty-state i { display:block; font-size:28px; color:#9bb8ca; margin-bottom:9px; }
+      @media(max-width:760px) { .work-grid,.service-list { grid-template-columns:repeat(2,1fr); } }
+      @media(max-width:560px) {
+        .work-form { grid-template-columns:1fr; }
+        .work-form .full { grid-column:auto; }
+        .work-grid,.service-list { grid-template-columns:1fr 1fr; }
+        .work-card { padding:15px; }
+        .workspace-head h2 { font-size:19px; }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="utility">
+      <div class="container">
+        <span
+          ><i class="fa-solid fa-landmark me-2"></i>Ministry of Road Transport
+          &amp; Highways</span
+        >
+        <div>
+          <a href="#main"
+            ><i class="fa-solid fa-universal-access me-1"></i>Skip to main
+            content</a
+          ><a href="#"><i class="fa-solid fa-globe me-1"></i>English / Hindi</a>
+        </div>
+      </div>
+    </div>
+    <header class="masthead">
+      <div
+        class="container d-flex justify-content-between align-items-center flex-wrap"
+      >
+        <div class="brand">
+          <div class="emblem"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="brand-copy">
+            <h1>PARIVAHAN SEWA</h1>
+            <p>
+              Government of India · Ministry of Road Transport &amp; Highways<br />e-Services
+              for Driving Licence and Vehicle Registration
+            </p>
+          </div>
+        </div>
+        <div class="portal-mark">
+          सारथी <span>PARIVAHAN&nbsp; | &nbsp;SARATHI</span>
+        </div>
+        <div class="header-tools">
+          <div class="time">
+            <strong>DATE:</strong> 30-10-2026 &nbsp; <strong>TIME:</strong>
+            <span id="clock">--:--:--</span><br /><span
+              >Language: &nbsp; अ / A &nbsp; · &nbsp; A- &nbsp; A &nbsp;
+              A+</span
+            >
+          </div>
+          <button class="login" type="button">
+            <i class="fa-solid fa-right-to-bracket me-1"></i>Login</button
+          ><span class="small">Helpline: 0120-2459171</span>
+        </div>
+      </div>
+    </header>
+    <div class="nav-shell">
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="#"
+                  ><i class="fa-solid fa-house me-1"></i>Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#services">Online Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Informational Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#footer">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <main class="container" id="main">
+      <section class="campaign" aria-label="Portal highlights">
+        <div class="campaign-head">
+          <div>
+            <div class="eyebrow">Sarathi Parivahan · Citizen services</div>
+            <h2>Driving services, made simpler.</h2>
+          </div>
+          <div class="campaign-note">
+            A single place to access essential<br />driving licence services
+            across India.
+          </div>
+        </div>
+        <div class="banner-grid">
+          <article class="banner primary">
+            <div>
+              <div class="tag">Your journey starts here</div>
+              <h3>One portal. Essential driving licence services.</h3>
+              <p>
+                Access applications, renewals, payments and status updates
+                through Sarathi Parivahan.
+              </p>
+            </div>
+            <i class="fa-solid fa-car-side banner-icon"></i>
+          </article>
+          <article class="banner secondary">
+            <div>
+              <div class="tag">Quick and convenient</div>
+              <h3>Manage your licence online</h3>
+              <p>
+                Choose a service and continue with your state-specific Sarathi
+                module.
+              </p>
+            </div>
+            <i class="fa-solid fa-id-card banner-icon"></i>
+          </article>
+          <article class="banner tertiary">
+            <div>
+              <div class="tag">Government of India</div>
+              <h3>Digital transport services</h3>
+              <p>e-Services for Driving Licence and Vehicle Registration.</p>
+            </div>
+            <i class="fa-solid fa-road banner-icon"></i>
+          </article>
+        </div>
+        <div class="dots"><i></i><i></i><i></i><i></i></div>
+      </section>
+      <section class="state-area">
+        <div>
+          <div class="state-kicker">Continue to your state portal</div>
+          <h2>
+            <i class="fa-solid fa-location-dot me-2" style="color: #0785c1"></i
+            >Select State Name to Avail Services
+          </h2>
+          <p>Choose your respective State/UT to proceed to Sarathi portal</p>
+        </div>
+        <div class="state-control">
+          <label for="stateSelect">Select your State / Union Territory</label
+          ><select class="form-select" id="stateSelect">
+            <option selected disabled value="">-- Select State Name --</option>
+            <optgroup label="States">
+              <option value="AP">Andhra Pradesh</option><option value="AR">Arunachal Pradesh</option><option value="AS">Assam</option><option value="BR">Bihar</option><option value="CG">Chhattisgarh</option><option value="GA">Goa</option><option value="GJ">Gujarat</option><option value="HR">Haryana</option><option value="HP">Himachal Pradesh</option><option value="JH">Jharkhand</option><option value="KA">Karnataka</option><option value="KL">Kerala</option><option value="MP">Madhya Pradesh</option><option value="MH">Maharashtra</option><option value="MN">Manipur</option><option value="ML">Meghalaya</option><option value="MZ">Mizoram</option><option value="NL">Nagaland</option><option value="OD">Odisha</option><option value="PB">Punjab</option><option value="RJ">Rajasthan</option><option value="SK">Sikkim</option><option value="TN">Tamil Nadu</option><option value="TG">Telangana</option><option value="TR">Tripura</option><option value="UP">Uttar Pradesh</option><option value="UK">Uttarakhand</option><option value="WB">West Bengal</option>
+            </optgroup>
+            <optgroup label="Union Territories">
+              <option value="AN">Andaman and Nicobar Islands</option><option value="CH">Chandigarh</option><option value="DN">Dadra and Nagar Haveli and Daman and Diu</option><option value="DL">Delhi</option><option value="JK">Jammu and Kashmir</option><option value="LA">Ladakh</option><option value="LD">Lakshadweep</option><option value="PY">Puducherry</option>
+            </optgroup>
+          </select>
+          <div class="state-help">
+            <i class="fa-solid fa-circle-info me-1"></i>Online services in this
+            portal are available only for the States listed below
+          </div>
+        </div>
+      </section>
+      <section id="services" hidden aria-live="polite">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Explore online services</div>
+            <h2>Driving Licence Services</h2>
+            <div class="selected-state-label" id="selectedStateLabel"></div>
+          </div>
+          <p>Select a service to get started</p>
+        </div>
+        <div class="services-grid">
+          <button type="button" class="service-card service-launch" data-service="Apply for Learner Licence" style="width:100%;text-align:left;cursor:pointer;font:inherit">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-id-card"></i>
+            </div>
+            <div class="service-title">Apply for Learner Licence</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </button>
+          <button type="button" class="service-card service-launch" data-service="Apply for Driving Licence" style="width:100%;text-align:left;cursor:pointer;font:inherit">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-address-card"></i>
+            </div>
+            <div class="service-title">Apply for Driving Licence</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </button>
+          <button type="button" class="service-card service-launch" data-service="Apply for DL Renewal" style="width:100%;text-align:left;cursor:pointer;font:inherit">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-rotate"></i>
+            </div>
+            <div class="service-title">Apply for DL Renewal</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </button>
+          <button type="button" class="service-card service-launch" data-service="Apply for Duplicate DL" style="width:100%;text-align:left;cursor:pointer;font:inherit">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-clone"></i>
+            </div>
+            <div class="service-title">Apply for Duplicate DL</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </button>
+          <button type="button" class="service-card service-launch" data-service="Change of Address" style="width:100%;text-align:left;cursor:pointer;font:inherit">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-file-pen"></i>
+            </div>
+            <div class="service-title">Change of Address</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </button>
+          <button type="button" class="service-card service-launch" data-service="International Driving Permit (IDP)" style="width:100%;text-align:left;cursor:pointer;font:inherit">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            <div class="service-title">International Driving Permit (IDP)</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </button>
+          <button type="button" class="service-card service-launch" data-service="Fee Payment" style="width:100%;text-align:left;cursor:pointer;font:inherit">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+            <div class="service-title">Fee Payment</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </button>
+          <button type="button" class="service-card service-launch" data-service="Check Application Status" style="width:100%;text-align:left;cursor:pointer;font:inherit">
+            <div class="service-icon-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="service-title">Check Application Status</div>
+            <i class="fa-solid fa-arrow-up-right-from-square service-arrow"></i>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <section class="container prototype-app" id="prototypeApp" hidden>
+      <div class="workspace-head">
+        <div><div class="eyebrow">Interactive citizen portal</div><h2 id="workspaceTitle">Citizen Dashboard</h2></div>
+        <span class="status-pill" id="prototypeState">Demo mode</span>
+      </div>
+      <div class="workspace-nav" id="workspaceNav">
+        <button type="button" data-view="dashboard" class="active">Dashboard</button>
+        <button type="button" data-view="services">All Services</button>
+        <button type="button" data-view="status">Track Application</button>
+        <button type="button" data-view="appointments">Appointments</button>
+        <button type="button" data-view="test">LL Mock Test</button>
+        <button type="button" data-view="grievance">Grievance</button>
+      </div>
+      <div id="workspaceContent"></div>
+    </section>
+
+    <div class="bot-widget" id="vAnyaBot" role="button" tabindex="0" aria-label="Open Sarathi assistant">
+      <i class="fa-solid fa-robot fa-lg"></i><span>Ask Vahan/Sarathi Assistant</span>
+    </div>
+    <section class="chat-panel" id="chatPanel" aria-label="Sarathi help assistant" aria-hidden="true">
+      <div class="chat-header">
+        <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
+        <div class="chat-heading">
+          <strong>VANI · Sarathi Assistant</strong>
+          <small><i class="fa-solid fa-circle" style="font-size:7px;color:#8ff0b2"></i> Online · Instant help</small>
+        </div>
+        <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">&times;</button>
+      </div>
+      <div class="chat-messages" id="chatMessages" aria-live="polite">
+        <div class="chat-message bot">Namaste! I’m the Sarathi help assistant. I can guide you through common driving licence services. What would you like help with?</div>
+      </div>
+      <div class="chat-quick" id="chatQuick">
+        <button type="button" data-question="How do I apply for a learner licence?">Learner licence</button>
+        <button type="button" data-question="How can I renew my driving licence?">DL renewal</button>
+        <button type="button" data-question="How do I check application status?">Application status</button>
+        <button type="button" data-question="Which documents are required?">Required documents</button>
+      </div>
+      <form class="chat-compose" id="chatForm">
+        <input id="chatInput" type="text" placeholder="Type your question..." autocomplete="off" aria-label="Type your question" />
+        <button class="chat-send" type="submit" aria-label="Send message"><i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+      <div class="chat-disclaimer">Demo assistant · For official applications, use the Sarathi Parivahan portal.</div>
+    </section>
+    <footer id="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-col">
+            <h5>About Parivahan</h5>
+            <p>
+              A flagship initiative by MoRTH providing automated, unified, and
+              citizen-friendly access to transport services across India.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h5>Important Links</h5>
+            <ul>
+              <li><a href="#">National Register Services</a></li>
+              <li><a href="#">Vahan Services</a></li>
+              <li><a href="#">Sarathi Services</a></li>
+              <li><a href="#">mParivahan Mobile App</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Help &amp; Support</h5>
+            <ul>
+              <li><a href="#">Frequently Asked Questions</a></li>
+              <li><a href="#">User Manuals</a></li>
+              <li><a href="#">Grievance Redressal</a></li>
+              <li><a href="#">Terms of Use &amp; Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="notice">
+          Designed &amp; Developed by National Informatics Centre (NIC) |
+          Ministry of Road Transport &amp; Highways
+        </div>
+      </div>
+      <div class="sub-footer">
+        Government of India · Ministry of Road Transport &amp; Highways
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const stateSelect = document.getElementById("stateSelect");
+      const servicesSection = document.getElementById("services");
+      const selectedStateLabel = document.getElementById("selectedStateLabel");
+      stateSelect.addEventListener("change", () => {
+        const selectedOption = stateSelect.options[stateSelect.selectedIndex];
+        if (!stateSelect.value) {
+          servicesSection.hidden = true;
+          selectedStateLabel.textContent = "";
+          return;
+        }
+        selectedStateLabel.innerHTML =
+          '<i class="fa-solid fa-location-dot" aria-hidden="true"></i> Selected state: ' +
+          selectedOption.textContent;
+        servicesSection.hidden = false;
+        servicesSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      // Local FAQ chatbot: works in this single HTML file without an API key.
+      const chatLauncher = document.getElementById("vAnyaBot");
+      const chatPanel = document.getElementById("chatPanel");
+      const chatClose = document.getElementById("chatClose");
+      const chatMessages = document.getElementById("chatMessages");
+      const chatForm = document.getElementById("chatForm");
+      const chatInput = document.getElementById("chatInput");
+      const chatQuick = document.getElementById("chatQuick");
+
+      function openChat() {
+        chatPanel.classList.add("open");
+        chatPanel.setAttribute("aria-hidden", "false");
+        chatInput.focus();
+      }
+      function closeChat() {
+        chatPanel.classList.remove("open");
+        chatPanel.setAttribute("aria-hidden", "true");
+      }
+      chatLauncher.addEventListener("click", openChat);
+      chatLauncher.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openChat();
+        }
+      });
+      chatClose.addEventListener("click", closeChat);
+
+      function addChatMessage(message, sender) {
+        const bubble = document.createElement("div");
+        bubble.className = "chat-message " + sender;
+        bubble.textContent = message;
+        chatMessages.appendChild(bubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      const faqAnswers = [
+        {
+          keys: ["learner", "ll", "learning licence"],
+          answer: "To apply for a Learner Licence:\n1. Select your State/UT on this page.\n2. Choose “Apply for Learner Licence”.\n3. Follow the Sarathi application steps, enter your details and upload the requested documents.\n4. Pay the applicable fee and complete the required test/appointment process shown by your state portal.\n\nRequirements and online-test availability can vary by state."
+        },
+        {
+          keys: ["new driving licence", "apply for driving", "permanent licence", "driving licence apply"],
+          answer: "To apply for a permanent Driving Licence, first select your State/UT and choose “Apply for Driving Licence”. Usually, you must hold a valid Learner Licence and apply after the minimum waiting period. Follow the portal instructions to book a driving test, if required."
+        },
+        {
+          keys: ["renew", "renewal", "expired licence", "expire"],
+          answer: "For DL renewal, select your State/UT and choose “Apply for DL Renewal”. Keep your driving licence details and any documents requested by the portal ready. The required medical certificate, fee and process may depend on your age and state."
+        },
+        {
+          keys: ["duplicate", "lost licence", "damaged licence"],
+          answer: "If your driving licence is lost or damaged, select your State/UT and choose “Apply for Duplicate DL”. The portal may ask for your DL number, identity details and supporting documents. If it was stolen, check whether a police report is required by your state."
+        },
+        {
+          keys: ["address", "change address", "change of address"],
+          answer: "For a change of address, select your State/UT and choose “Change of Address”. Enter your driving licence details and provide the address proof requested by the portal. The exact document list and fee are state-specific."
+        },
+        {
+          keys: ["international", "idp", "international driving permit"],
+          answer: "For an International Driving Permit (IDP), select your State/UT and choose “International Driving Permit (IDP)”. Check the portal's eligibility and document requirements. A valid Indian driving licence and passport-related documents are commonly requested; confirm the current list on the official portal."
+        },
+        {
+          keys: ["fee", "payment", "pay", "receipt", "challan"],
+          answer: "To pay a Sarathi service fee, select your State/UT and choose “Fee Payment”. Enter the application or licence details requested by the portal. Use only the official payment gateway and save your receipt."
+        },
+        {
+          keys: ["status", "track", "application number", "where is my"],
+          answer: "To check your application status:\n1. Select your State/UT.\n2. Choose “Check Application Status”.\n3. Enter the application number and date of birth or other details requested.\n\nI cannot access your personal application record from this demo."
+        },
+        {
+          keys: ["document", "documents", "proof", "required", "what should i carry"],
+          answer: "Documents depend on the service and your State/UT. Commonly requested items include proof of age, proof of address, identity details, a photograph/signature where applicable, and your existing Learner Licence or Driving Licence. Check the exact checklist shown in your state portal before submitting."
+        },
+        {
+          keys: ["age", "eligible", "eligibility", "minimum age"],
+          answer: "Eligibility depends on the vehicle class. In general, the minimum age is 16 for certain gearless two-wheelers (with conditions), and 18 for most other non-transport vehicles. Commercial/transport categories have additional conditions. Confirm the current rules for your category on the official portal."
+        },
+        {
+          keys: ["test", "driving test", "learner test", "slot", "appointment"],
+          answer: "Test and appointment options are shown after you select your State/UT and start the relevant application. Use the appointment or slot-booking option provided by that state portal. Available dates and test requirements vary by location."
+        },
+        {
+          keys: ["state", "select state", "not showing", "services not showing"],
+          answer: "Choose a State/UT from the dropdown titled “Select State Name to Avail Services”. The driving licence service cards will appear below it. Only the states listed in this demo dropdown are currently included."
+        },
+        {
+          keys: ["contact", "helpline", "phone", "support"],
+          answer: "The helpline number displayed on this demo page is 0120-2459171. For official assistance, use the contact/help options on the Parivahan portal."
+        },
+        {
+          keys: ["official website", "real website", "link", "parivahan"],
+          answer: "You can visit the official Parivahan portal at https://parivahan.gov.in/ . Make sure the address is correct before entering personal information or making a payment."
+        }
+      ];
+
+      function getBotAnswer(question) {
+        const q = question.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+        for (const item of faqAnswers) {
+          if (item.keys.some((key) => q.includes(key))) return item.answer;
+        }
+        if (/\b(hi|hello|hey|namaste)\b/.test(q)) {
+          return "Namaste! I can help with Learner Licence, new Driving Licence, renewal, duplicate licence, address change, IDP, fee payment, application status and document requirements. Ask me about any of these.";
+        }
+        return "I’m not sure about that yet. I can answer common questions about Learner Licence, Driving Licence, renewal, duplicate DL, address change, IDP, fee payment, application status, documents and appointments. For account-specific help, please use the official Sarathi portal: https://sarathi.parivahan.gov.in/";
+      }
+
+      function sendChatMessage(message) {
+        const question = message.trim();
+        if (!question) return;
+        addChatMessage(question, "user");
+        chatInput.value = "";
+        // Keep the interaction asynchronous-looking while remaining fully local.
+        window.setTimeout(() => addChatMessage(getBotAnswer(question), "bot"), 180);
+      }
+
+      chatForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        sendChatMessage(chatInput.value);
+      });
+      chatQuick.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-question]");
+        if (button) sendChatMessage(button.dataset.question);
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && chatPanel.classList.contains("open")) closeChat();
+      });
+
+
+      // ---------------- Citizen-service prototype (local demo data) ----------------
+      const prototypeApp = document.getElementById("prototypeApp");
+      const workspaceContent = document.getElementById("workspaceContent");
+      const workspaceTitle = document.getElementById("workspaceTitle");
+      const workspaceNav = document.getElementById("workspaceNav");
+      const prototypeState = document.getElementById("prototypeState");
+      const STORAGE_KEY = "sarathiPrototypeV1";
+      let db = loadDB();
+      let currentView = "dashboard";
+      let quizState = null;
+
+      function loadDB() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+          return { applications: saved.applications || [], grievances: saved.grievances || [], appointments: saved.appointments || [], payments: saved.payments || [] };
+        } catch (_) {
+          return { applications: [], grievances: [], appointments: [], payments: [] };
+        }
+      }
+      function saveDB() { localStorage.setItem(STORAGE_KEY, JSON.stringify(db)); }
+      function safe(value) {
+        return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[ch]));
+      }
+      function selectedStateName() {
+        const option = stateSelect.options[stateSelect.selectedIndex];
+        return stateSelect.value ? option.textContent : "State not selected";
+      }
+      function requireState() {
+        if (!stateSelect.value) {
+          alert("Please select your State/UT first.");
+          stateSelect.focus();
+          return false;
+        }
+        return true;
+      }
+      function openWorkspace(view = "dashboard") {
+        if (!requireState()) return;
+        prototypeApp.hidden = false;
+        currentView = view;
+        prototypeState.textContent = selectedStateName() + " · Demo";
+        renderView();
+        prototypeApp.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      function setView(view) {
+        currentView = view;
+        renderView();
+      }
+      workspaceNav.addEventListener("click", event => {
+        const btn = event.target.closest("[data-view]");
+        if (btn) setView(btn.dataset.view);
+      });
+      function setActiveNav() {
+        workspaceNav.querySelectorAll("button").forEach(btn => btn.classList.toggle("active", btn.dataset.view === currentView));
+      }
+      function renderView() {
+        setActiveNav();
+        const titles = { dashboard:"Citizen Dashboard", services:"Online Services", apply:"Application Form", documents:"Document Upload", status:"Application Status", payment:"Fee Payment", appointments:"Appointment Booking", test:"Learner Licence Mock Test", grievance:"Grievance Redressal", receipt:"Payment Receipt" };
+        workspaceTitle.textContent = titles[currentView] || "Citizen Services";
+        if (currentView === "dashboard") renderDashboard();
+        else if (currentView === "services") renderAllServices();
+        else if (currentView === "apply") renderApplicationForm();
+        else if (currentView === "documents") renderDocuments();
+        else if (currentView === "status") renderStatus();
+        else if (currentView === "payment") renderPayment();
+        else if (currentView === "appointments") renderAppointments();
+        else if (currentView === "test") renderTest();
+        else if (currentView === "grievance") renderGrievance();
+        else if (currentView === "receipt") renderReceipt();
+      }
+      function serviceIcon(name) {
+        if (name.includes("Learner")) return "fa-id-card";
+        if (name.includes("Driving Licence")) return "fa-address-card";
+        if (name.includes("Renewal")) return "fa-rotate";
+        if (name.includes("Duplicate")) return "fa-clone";
+        if (name.includes("Address")) return "fa-location-dot";
+        if (name.includes("International")) return "fa-globe";
+        if (name.includes("Fee")) return "fa-credit-card";
+        if (name.includes("Status")) return "fa-magnifying-glass";
+        return "fa-file-lines";
+      }
+      function renderDashboard() {
+        const latest = db.applications.slice().reverse();
+        workspaceContent.innerHTML = `
+          <div class="work-grid">
+            <div class="work-stat"><strong>${db.applications.length}</strong><span>Total applications</span></div>
+            <div class="work-stat"><strong>${db.appointments.length}</strong><span>Appointments booked</span></div>
+            <div class="work-stat"><strong>${db.payments.length}</strong><span>Demo payments</span></div>
+          </div>
+          <div class="work-card" style="margin-top:14px">
+            <h3>Welcome to your Sarathi dashboard</h3>
+            <p class="work-muted">Manage your demo applications, documents, payments and appointments for ${safe(selectedStateName())}.</p>
+            <div class="work-actions">
+              <button class="action-btn primary" data-action="start-ll">Apply for Learner Licence</button>
+              <button class="action-btn" data-action="all-services">Explore all services</button>
+              <button class="action-btn" data-action="track">Track an application</button>
+            </div>
+          </div>
+          <div class="work-card">
+            <h3>My Applications</h3>
+            ${latest.length ? latest.map(app => `<div class="record-row"><div><strong>${safe(app.type)} · ${safe(app.id)}</strong><small>${safe(app.name)} · ${safe(app.created)}</small></div><span class="status-pill">${safe(app.status)}</span><button class="action-btn" data-action="open-status" data-id="${safe(app.id)}">View</button></div>`).join("") : `<div class="empty-state"><i class="fa-regular fa-folder-open"></i>No applications yet. Start by applying for a Learner Licence.</div>`}
+          </div>
+          <div class="work-card">
+            <h3>Quick actions</h3>
+            <div class="service-list">
+              <button class="service-tile" data-action="documents"><i class="fa-solid fa-file-arrow-up"></i><strong>Upload documents</strong></button>
+              <button class="service-tile" data-action="payment"><i class="fa-solid fa-credit-card"></i><strong>Make fee payment</strong></button>
+              <button class="service-tile" data-action="appointments"><i class="fa-solid fa-calendar-check"></i><strong>Book appointment</strong></button>
+              <button class="service-tile" data-action="test"><i class="fa-solid fa-clipboard-question"></i><strong>Practice LL test</strong></button>
+              <button class="service-tile" data-action="grievance"><i class="fa-solid fa-message"></i><strong>File grievance</strong></button>
+              <button class="service-tile" data-action="status"><i class="fa-solid fa-magnifying-glass"></i><strong>Check status</strong></button>
+            </div>
+          </div>
+          <div class="notice-box"><strong>Prototype notice:</strong> This is a demonstration. Applications, payments, appointments and test results are simulated and are not submitted to any RTO or government system.</div>`;
+      }
+      const serviceNames = ["Apply for Learner Licence", "Apply for Driving Licence", "Apply for DL Renewal", "Apply for Duplicate DL", "Change of Address", "International Driving Permit (IDP)", "Fee Payment", "Check Application Status"];
+      const allServiceNames = [...serviceNames, "Add Class of Vehicle", "Print Application Forms", "Complete Pending Application", "Find Application Number", "Check Payment Status", "Service Withdrawal", "DL Extract"];
+      function renderAllServices() {
+        workspaceContent.innerHTML = `<div class="work-card"><h3>Available online services</h3><p class="work-muted">Select a service to open its interactive demonstration. State selected: ${safe(selectedStateName())}</p><div class="service-list">${allServiceNames.map(name => `<button class="service-tile" data-service="${safe(name)}"><i class="fa-solid ${serviceIcon(name)}"></i><strong>${safe(name)}</strong></button>`).join("")}</div></div>`;
+      }
+      function renderApplicationForm() {
+        const isLL = !window.activeService || window.activeService.includes("Learner");
+        const title = window.activeService || "Apply for Learner Licence";
+        workspaceContent.innerHTML = `<div class="work-card"><h3>${safe(title)}</h3><p class="work-muted">Complete the details below. Fields marked * are required. This creates a local demo application only.</p>
+          <form id="applicationForm" class="work-form">
+            ${isLL ? "" : `<div class="full"><label>Existing Learner Licence number *</label><input name="llNumber" required placeholder="Enter your Learner Licence number"></div>`}
+            <div><label>Applicant full name *</label><input name="name" required maxlength="70" placeholder="As shown on identity proof"></div>
+            <div><label>Date of birth *</label><input name="dob" type="date" required max="${new Date().toISOString().slice(0,10)}"></div>
+            <div><label>Mobile number *</label><input name="mobile" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required placeholder="10-digit mobile number"></div>
+            <div><label>Email address</label><input name="email" type="email" placeholder="name@example.com"></div>
+            <div><label>Gender</label><select name="gender"><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option></select></div>
+            <div><label>Vehicle class *</label><select name="vehicle" required><option value="">Select vehicle class</option><option>MCWOG - Motorcycle without gear</option><option>MCWG - Motorcycle with gear</option><option>LMV - Light Motor Vehicle</option><option>Transport Vehicle</option></select></div>
+            <div class="full"><label>Full residential address *</label><textarea name="address" required maxlength="250" placeholder="House/Street, locality, city, PIN code"></textarea></div>
+            <div><label>State / UT</label><input name="state" value="${safe(selectedStateName())}" readonly></div>
+            <div><label>RTO / Licensing office</label><select name="rto"><option>Nearest available RTO (demo)</option><option>Central RTO (demo)</option><option>Regional RTO (demo)</option></select></div>
+            <div class="full"><label><input type="checkbox" name="declaration" required style="width:auto;margin-right:7px">I confirm that the information entered is correct for this demonstration.</label></div>
+            <div class="full work-actions"><button class="action-btn primary" type="submit">Submit demo application</button><button class="action-btn" type="button" data-action="dashboard">Cancel</button></div>
+          </form></div>`;
+        document.getElementById("applicationForm").addEventListener("submit", event => {
+          event.preventDefault();
+          const form = new FormData(event.currentTarget);
+          const app = {
+            id: "SAR" + Date.now().toString().slice(-9),
+            type: title,
+            name: form.get("name"), dob: form.get("dob"), mobile: form.get("mobile"),
+            email: form.get("email"), gender: form.get("gender"), vehicle: form.get("vehicle"), llNumber: form.get("llNumber") || "",
+            address: form.get("address"), state: selectedStateName(), rto: form.get("rto"),
+            created: new Date().toLocaleString("en-IN"), status: "Submitted",
+            docs: [], paid: false, appointment: null, testResult: null, history: [{label:"Application submitted",date:new Date().toLocaleString("en-IN")}]
+          };
+          db.applications.push(app); saveDB(); window.activeApplicationId = app.id;
+          currentView = "status";
+          renderView();
+          workspaceContent.insertAdjacentHTML("afterbegin", `<div class="notice-box" style="margin-bottom:12px"><strong>Application submitted!</strong> Your demo application number is <strong>${safe(app.id)}</strong>. Save this number to track your application.</div>`);
+        });
+      }
+      function getApp() {
+        return db.applications.find(app => app.id === window.activeApplicationId) || db.applications[db.applications.length - 1];
+      }
+      function appPicker() {
+        if (!db.applications.length) return `<div class="empty-state"><i class="fa-regular fa-folder-open"></i>No demo application found. <button class="action-btn primary" data-action="start-ll">Apply now</button></div>`;
+        return `<label style="font-size:11px;font-weight:700;color:#456078">Select application</label><select id="appPicker" class="form-select" style="max-width:440px;margin:6px 0 15px">${db.applications.slice().reverse().map(a=>`<option value="${safe(a.id)}" ${a.id===window.activeApplicationId?"selected":""}>${safe(a.id)} · ${safe(a.type)} · ${safe(a.name)}</option>`).join("")}</select>`;
+      }
+      function renderStatus() {
+        workspaceContent.innerHTML = `<div class="work-card"><h3>Track your application</h3><p class="work-muted">Enter the application number generated by this prototype.</p><form id="trackForm" class="work-form"><div><label>Application number</label><input name="appId" required placeholder="e.g. SAR123456789" value="${safe(window.activeApplicationId || "")}"></div><div><label>Date of birth</label><input name="dob" type="date"></div><div class="full work-actions"><button class="action-btn primary">Track application</button></div></form><div id="trackResult"></div></div>`;
+        document.getElementById("trackForm").addEventListener("submit", event => {
+          event.preventDefault();
+          const id = new FormData(event.currentTarget).get("appId").trim();
+          const app = db.applications.find(a => a.id.toLowerCase() === id.toLowerCase());
+          const result = document.getElementById("trackResult");
+          if (!app) { result.innerHTML = `<div class="notice-box">No demo application found with that number. Check the number or submit a new demo application.</div>`; return; }
+          window.activeApplicationId = app.id;
+          result.innerHTML = renderApplicationSummary(app);
+        });
+        if (db.applications.length) {
+          const latest = getApp();
+          document.getElementById("trackResult").innerHTML = renderApplicationSummary(latest);
+        }
+      }
+      function renderApplicationSummary(app) {
+        const steps = ["Application submitted","Documents uploaded","Fee payment completed","Appointment booked","Test completed"];
+        const completed = [true, app.docs.length>0, app.paid, !!app.appointment, !!app.testResult];
+        return `<div style="margin-top:18px"><div class="record-row"><div><strong>${safe(app.type)} · ${safe(app.id)}</strong><small>${safe(app.name)} · ${safe(app.state)}</small></div><span class="status-pill">${safe(app.status)}</span></div><div class="timeline">${steps.map((s,i)=>`<div class="timeline-row ${completed[i]?"done":""}"><div class="timeline-mark"><i></i></div><div class="timeline-copy"><strong>${s}</strong><small>${completed[i]?"Completed":"Pending"}</small></div></div>`).join("")}</div><div class="work-actions"><button class="action-btn" data-action="documents">Upload documents</button><button class="action-btn" data-action="payment">Fee payment</button><button class="action-btn" data-action="appointments">Book appointment</button><button class="action-btn" data-action="test">Take mock test</button></div></div>`;
+      }
+      function renderDocuments() {
+        const app = getApp();
+        if (!app) { workspaceContent.innerHTML = `<div class="work-card">${appPicker()}</div>`; return; }
+        workspaceContent.innerHTML = `<div class="work-card"><h3>Upload supporting documents</h3><p class="work-muted">Application: ${safe(app.id)} · ${safe(app.name)}</p><div class="notice-box">Demo upload only. File names are saved in this browser; file contents are not sent to any server. Do not upload real sensitive documents.</div><form id="documentForm" class="work-form"><div class="full"><label>Select document type</label><select name="docType" required><option>Age proof</option><option>Address proof</option><option>Identity proof</option><option>Photograph</option><option>Signature</option><option>Medical certificate (if applicable)</option><option>Other supporting document</option></select></div><div class="full"><label>Choose file (PDF, JPG or PNG; demo max 5 MB)</label><input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" required></div><div class="full work-actions"><button class="action-btn primary">Add document</button></div></form><h3 style="margin-top:20px">Uploaded documents</h3>${app.docs.length ? app.docs.map((d,i)=>`<div class="record-row"><div><strong>${safe(d.type)}</strong><small>${safe(d.name)}</small></div><span class="status-pill">Added</span></div>`).join("") : `<p class="work-muted">No documents uploaded yet.</p>`}<div class="work-actions"><button class="action-btn" data-action="status">Back to application status</button></div></div>`;
+        document.getElementById("documentForm").addEventListener("submit", event => {
+          event.preventDefault();
+          const form = new FormData(event.currentTarget), file = form.get("file");
+          if (!file || !file.name) return;
+          if (file.size > 5*1024*1024) { alert("Please choose a file smaller than 5 MB."); return; }
+          if (!/\.(pdf|jpe?g|png)$/i.test(file.name)) { alert("Only PDF, JPG and PNG files are supported."); return; }
+          app.docs.push({type:form.get("docType"),name:file.name});
+          app.history.push({label:"Document added: "+form.get("docType"),date:new Date().toLocaleString("en-IN")});
+          saveDB(); renderDocuments();
+        });
+      }
+      function renderPayment() {
+        const app = getApp();
+        if (!app) { workspaceContent.innerHTML = `<div class="work-card">${appPicker()}</div>`; return; }
+        const fee = app.type.includes("Learner") ? 200 : app.type.includes("Renewal") ? 400 : 500;
+        workspaceContent.innerHTML = `<div class="work-card"><h3>Fee payment</h3><p class="work-muted">Application ${safe(app.id)} · ${safe(app.type)}</p><div class="work-stat"><span>Illustrative service fee</span><strong>₹${fee.toFixed(2)}</strong><span>Demo amount only; actual fees vary by service and jurisdiction.</span></div>${app.paid ? `<div class="notice-box" style="margin-top:12px">Payment already marked successful in this demo.</div><div class="work-actions"><button class="action-btn primary" data-action="receipt">View receipt</button></div>` : `<div class="work-form"><div class="full"><label>Payment method (simulation)</label><select id="paymentMethod"><option>UPI (demo)</option><option>Debit / Credit Card (demo)</option><option>Net Banking (demo)</option></select></div></div><div class="work-actions"><button class="action-btn primary" data-action="pay-success">Simulate successful payment</button><button class="action-btn" data-action="pay-fail">Simulate failed payment</button></div>`}</div>`;
+      }
+      function renderReceipt() {
+        const app = getApp();
+        if (!app || !app.paid) { workspaceContent.innerHTML = `<div class="work-card"><p class="work-muted">No successful demo payment receipt found.</p></div>`; return; }
+        workspaceContent.innerHTML = `<div class="work-card" id="receiptCard"><div style="text-align:center"><div class="eyebrow">Government services · Prototype receipt</div><h3>Payment Acknowledgement</h3><span class="status-pill">DEMO · SUCCESSFUL</span></div><hr><div class="record-row"><strong>Application number</strong><span>${safe(app.id)}</span></div><div class="record-row"><strong>Applicant</strong><span>${safe(app.name)}</span></div><div class="record-row"><strong>Service</strong><span>${safe(app.type)}</span></div><div class="record-row"><strong>Transaction ID</strong><span>${safe(app.transactionId)}</span></div><div class="record-row"><strong>Amount</strong><strong>₹${safe(app.fee)}</strong></div><div class="record-row"><strong>Date</strong><span>${safe(app.paidAt)}</span></div><p class="work-muted" style="text-align:center;margin-top:15px">This is a simulated receipt and is not proof of payment to any government department.</p><div class="work-actions"><button class="action-btn primary" onclick="window.print()">Print receipt</button><button class="action-btn" data-action="dashboard">Dashboard</button></div></div>`;
+      }
+      function renderAppointments() {
+        const app = getApp();
+        if (!app) { workspaceContent.innerHTML = `<div class="work-card">${appPicker()}</div>`; return; }
+        workspaceContent.innerHTML = `<div class="work-card"><h3>Book a test appointment</h3><p class="work-muted">Application ${safe(app.id)} · Select a simulated RTO slot.</p>${app.appointment ? `<div class="notice-box">Appointment booked: <strong>${safe(app.appointment.date)} at ${safe(app.appointment.time)}</strong> · ${safe(app.appointment.rto)}</div>` : `<form id="appointmentForm" class="work-form"><div><label>Appointment type</label><select name="type"><option>Learner Licence Test</option><option>Driving Licence Test</option></select></div><div><label>RTO</label><select name="rto"><option>${safe(selectedStateName())} Central RTO (Demo)</option><option>${safe(selectedStateName())} Regional RTO (Demo)</option></select></div><div><label>Choose date</label><input name="date" type="date" min="${new Date().toISOString().slice(0,10)}" required></div><div><label>Available time slot</label><select name="time"><option>10:00 AM</option><option>11:30 AM</option><option>02:00 PM</option><option>03:30 PM</option></select></div><div class="full work-actions"><button class="action-btn primary">Confirm demo appointment</button></div></form>`}<div class="work-actions"><button class="action-btn" data-action="status">Application status</button></div></div>`;
+        const form = document.getElementById("appointmentForm");
+        if (form) form.addEventListener("submit", event => {
+          event.preventDefault(); const data = new FormData(form);
+          app.appointment = {type:data.get("type"),rto:data.get("rto"),date:data.get("date"),time:data.get("time")};
+          app.status = "Appointment booked"; app.history.push({label:"Appointment booked",date:new Date().toLocaleString("en-IN")});
+          db.appointments.push({applicationId:app.id,...app.appointment}); saveDB(); renderAppointments();
+        });
+      }
+      const quizQuestions = [
+        {q:"What does a red traffic light mean?",o:["Proceed carefully","Stop","Turn left"],a:1,e:"A red signal means stop before the stop line."},
+        {q:"What should you do when an ambulance approaches with siren?",o:["Give way safely","Race ahead","Block the road"],a:0,e:"Give way to emergency vehicles while keeping road safety in mind."},
+        {q:"A helmet is required for:",o:["Only the rider","Rider and pillion, as applicable","Only at night"],a:1,e:"Protective helmets are required for two-wheeler riders and pillion riders, subject to applicable rules."},
+        {q:"What does a zebra crossing indicate?",o:["Parking area","Pedestrian crossing","Overtaking zone"],a:1,e:"Zebra crossings are designated pedestrian crossing areas."},
+        {q:"When driving in rain, you should:",o:["Increase speed","Maintain extra distance and reduce speed","Brake suddenly"],a:1,e:"Wet roads reduce tyre grip and increase stopping distance."},
+        {q:"Use a mobile phone while driving:",o:["Whenever traffic is slow","Only at red lights","Do not use a handheld phone while driving"],a:2,e:"Avoid handheld phone use while driving; stop safely if you need to use it."},
+        {q:"A broken white line on the road generally means:",o:["Lane changes may be made when safe","Never cross","Road closed"],a:0,e:"A broken lane marking generally permits lane changes when safe."},
+        {q:"At an unguarded railway crossing, you should:",o:["Speed up","Stop, look and proceed only when safe","Follow the vehicle ahead blindly"],a:1,e:"Stop and ensure the crossing is clear before proceeding."},
+        {q:"What should you do before changing lanes?",o:["Signal and check mirrors/blind spots","Honk continuously","Turn without checking"],a:0,e:"Check mirrors and blind spots, signal, and change lanes only when safe."},
+        {q:"Driving under the influence of alcohol is:",o:["Allowed on empty roads","Dangerous and prohibited","Allowed for experienced drivers"],a:1,e:"Never drive under the influence of alcohol or intoxicating substances."}
+      ];
+      function renderTest() {
+        quizState = {index:0,answers:[],submitted:false};
+        workspaceContent.innerHTML = `<div class="work-card"><h3>Learner Licence practice test</h3><p class="work-muted">10 practice questions · Choose one answer for each. This is a learning demo, not the official government test.</p><div id="quizArea"></div></div>`;
+        renderQuizQuestion();
+      }
+      function renderQuizQuestion() {
+        const q = quizQuestions[quizState.index], selected = quizState.answers[quizState.index];
+        document.getElementById("quizArea").innerHTML = `<div class="work-stat"><span>Question ${quizState.index+1} of ${quizQuestions.length}</span><strong>${Math.round((quizState.index+1)/quizQuestions.length*100)}%</strong></div><h3 style="margin-top:18px">${safe(q.q)}</h3>${q.o.map((o,i)=>`<button class="quiz-option ${selected===i?"selected":""}" data-answer="${i}">${String.fromCharCode(65+i)}. ${safe(o)}</button>`).join("")}<div class="work-actions"><button class="action-btn" data-action="quiz-prev" ${quizState.index===0?"disabled":""}>Previous</button><button class="action-btn primary" data-action="quiz-next">${quizState.index===quizQuestions.length-1?"Finish test":"Next question"}</button></div>`;
+      }
+      function finishQuiz() {
+        const score = quizQuestions.reduce((sum,q,i)=>sum+(quizState.answers[i]===q.a?1:0),0);
+        const app = getApp();
+        if (app) { app.testResult={score,total:quizQuestions.length,passed:score>=6}; app.history.push({label:"Practice test completed: "+score+"/10",date:new Date().toLocaleString("en-IN")}); saveDB(); }
+        document.getElementById("quizArea").innerHTML = `<div style="text-align:center;padding:18px"><i class="fa-solid fa-award" style="font-size:40px;color:#159b68"></i><h3 style="margin-top:12px">Practice test completed</h3><div class="work-stat" style="max-width:220px;margin:14px auto"><strong>${score}/10</strong><span>Your score</span></div><span class="status-pill">${score>=6?"Practice pass":"Keep practising"}</span><p class="work-muted" style="margin-top:12px">This result is for practice only and has no official validity.</p></div><h3>Answer review</h3>${quizQuestions.map((q,i)=>`<div class="record-row"><div><strong>${i+1}. ${safe(q.q)}</strong><small>Your answer: ${safe(q.o[quizState.answers[i]] ?? "Not answered")} · Correct: ${safe(q.o[q.a])}<br>${safe(q.e)}</small></div><span class="status-pill">${quizState.answers[i]===q.a?"Correct":"Review"}</span></div>`).join("")}<div class="work-actions"><button class="action-btn primary" data-action="test">Retake test</button><button class="action-btn" data-action="dashboard">Dashboard</button></div>`;
+      }
+      function renderGrievance() {
+        workspaceContent.innerHTML = `<div class="work-card"><h3>File a grievance</h3><p class="work-muted">Submit a demo complaint and track its reference number.</p><form id="grievanceForm" class="work-form"><div><label>Applicant name *</label><input name="name" required></div><div><label>Application number (optional)</label><input name="appId"></div><div><label>Category *</label><select name="category" required><option value="">Select category</option><option>Application delay</option><option>Payment issue</option><option>Appointment issue</option><option>Document verification</option><option>Other</option></select></div><div><label>Mobile number *</label><input name="mobile" pattern="[0-9]{10}" maxlength="10" required></div><div class="full"><label>Describe your issue *</label><textarea name="description" required maxlength="600"></textarea></div><div class="full work-actions"><button class="action-btn primary">Submit demo grievance</button></div></form><h3 style="margin-top:20px">My grievances</h3>${db.grievances.length?db.grievances.slice().reverse().map(g=>`<div class="record-row"><div><strong>${safe(g.id)} · ${safe(g.category)}</strong><small>${safe(g.description)}</small></div><span class="status-pill">${safe(g.status)}</span></div>`).join(""):`<p class="work-muted">No grievances submitted yet.</p>`}</div>`;
+        document.getElementById("grievanceForm").addEventListener("submit", event => {
+          event.preventDefault(); const f = new FormData(event.currentTarget);
+          db.grievances.push({id:"GRV"+Date.now().toString().slice(-8),name:f.get("name"),appId:f.get("appId"),category:f.get("category"),mobile:f.get("mobile"),description:f.get("description"),status:"Submitted",date:new Date().toLocaleString("en-IN")});
+          saveDB(); renderGrievance(); workspaceContent.insertAdjacentHTML("afterbegin", `<div class="notice-box" style="margin-bottom:12px">Your demo grievance has been submitted. Keep the reference number shown below.</div>`);
+        });
+      }
+      function launchService(name) {
+        if (!requireState()) return;
+        window.activeService = name;
+        if (name.includes("Status") || name.includes("Application Number") || name.includes("Payment Status")) setView("status");
+        else if (name.includes("Fee")) setView("payment");
+        else if (name.includes("Pending")) setView("dashboard");
+        else if (name.includes("Print")) { setView("receipt"); }
+        else if (name.includes("Withdrawal")) {
+          const app=getApp(); if(app && confirm("Withdraw this demo application?")) { app.status="Withdrawn"; app.history.push({label:"Application withdrawn",date:new Date().toLocaleString("en-IN")}); saveDB(); setView("status"); } else setView("dashboard");
+        }
+        else setView("apply");
+        openWorkspace(currentView);
+      }
+      document.addEventListener("click", event => {
+        const service = event.target.closest("[data-service]");
+        if (service) { launchService(service.dataset.service); return; }
+        const action = event.target.closest("[data-action]");
+        if (!action) return;
+        const a = action.dataset.action;
+        if (a==="start-ll") launchService("Apply for Learner Licence");
+        else if (a==="all-services") { openWorkspace("services"); }
+        else if (a==="dashboard") { openWorkspace("dashboard"); }
+        else if (a==="track") openWorkspace("status");
+        else if (a==="status" || a==="documents" || a==="payment" || a==="appointments" || a==="test" || a==="grievance" || a==="receipt") openWorkspace(a);
+        else if (a==="open-status") { window.activeApplicationId=action.dataset.id; openWorkspace("status"); }
+        else if (a==="pay-success") {
+          const app=getApp(); if(!app) return;
+          app.paid=true; app.fee=app.type.includes("Learner")?200:app.type.includes("Renewal")?400:500;
+          app.transactionId="TXN"+Date.now().toString().slice(-10); app.paidAt=new Date().toLocaleString("en-IN");
+          app.status="Fee paid"; app.history.push({label:"Demo fee payment successful",date:app.paidAt});
+          db.payments.push({applicationId:app.id,amount:app.fee,transactionId:app.transactionId}); saveDB(); openWorkspace("receipt");
+        } else if (a==="pay-fail") { alert("Demo payment failed. No money has been charged. You can retry."); }
+        else if (a==="quiz-prev" && quizState && quizState.index>0) { quizState.index--; renderQuizQuestion(); }
+        else if (a==="quiz-next" && quizState) { if(quizState.answers[quizState.index]===undefined){alert("Please select an answer first.");return;} if(quizState.index===quizQuestions.length-1) finishQuiz(); else {quizState.index++;renderQuizQuestion();} }
+      });
+      document.addEventListener("click", event => {
+        const option = event.target.closest("[data-answer]");
+        if (option && quizState) {
+          quizState.answers[quizState.index]=Number(option.dataset.answer);
+          renderQuizQuestion();
+        }
+      });
+      stateSelect.addEventListener("change", () => {
+        prototypeState.textContent = stateSelect.value ? selectedStateName()+" · Demo" : "Demo mode";
+      });
+
+      // Give the chatbot context from the locally saved prototype application.
+      const originalGetBotAnswer = typeof getBotAnswer === "function" ? getBotAnswer : null;
+      if (originalGetBotAnswer) {
+        const previousAnswerFn = getBotAnswer;
+        getBotAnswer = function(question) {
+          const q = question.toLowerCase();
+          if (q.includes("my application") || q.includes("my status") || q.includes("track my")) {
+            const app = getApp();
+            if (app) return `Your latest demo application is ${app.id}. Current status: ${app.status}. Documents: ${app.docs.length} added. Fee: ${app.paid?"paid":"pending"}. Appointment: ${app.appointment?app.appointment.date+" at "+app.appointment.time:"not booked"}. Open Track Application for the full timeline.`;
+          }
+          if (q.includes("appointment") || q.includes("book a slot")) return "You can book a simulated appointment in this prototype. Select a state, open the Dashboard, then choose Appointments.";
+          if (q.includes("upload") || q.includes("document")) return "To add demo documents, select a state, submit an application, then open Upload documents from the dashboard. File names are stored locally only.";
+          if (q.includes("mock test") || q.includes("practice test")) return "You can take a 10-question Learner Licence practice test. Select a state and open LL Mock Test from the dashboard.";
+          if (q.includes("grievance") || q.includes("complaint")) return "You can submit a demo grievance from Dashboard → Grievance. A local reference number will be generated.";
+          return previousAnswerFn(question);
+        };
+      }
+      // Intercept the old service launch buttons and dashboard navigation links.
+      document.querySelectorAll('.navbar-custom a').forEach(link => {
+        if (link.textContent.toLowerCase().includes("dashboard")) link.addEventListener("click", event => { event.preventDefault(); openWorkspace("dashboard"); });
+        if (link.textContent.toLowerCase().includes("online services")) link.addEventListener("click", event => { event.preventDefault(); if(requireState()) openWorkspace("services"); });
+      });
+
+
+      function updateClock() {
+        document.getElementById("clock").textContent =
+          new Date().toLocaleTimeString("en-IN", { hour12: true });
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>
